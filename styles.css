@@ -9,10 +9,19 @@
     list-style: none;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100vw;
+}
+
 @media (width >=320px) {
     .main-header {
         width: 100vw;
         height: 250px;
+        display: flex;
+        flex-direction: column;
     }
 
     .logo-container {
@@ -23,7 +32,6 @@
         background-size: cover;
         background-position: center;
         padding: 0.1px;
-        z-index: -100;
         justify-content: center;
         align-items: center;
     }
@@ -46,7 +54,6 @@
         width: 100vw;
         height: 70px;
         display: flex;
-        position: fixed;
         justify-content: space-evenly;
         align-items: center;
         background-color: #034D78;
@@ -56,9 +63,6 @@
         display: none;
     }
 
-    .brand-img {
-        display: hidden;
-    }
 
     .search-bar,
     .filter-type,
@@ -67,7 +71,9 @@
         height: 45px;
     }
 
-    .search-label, .filter-label, .sort-label{
+    .search-label,
+    .filter-label,
+    .sort-label {
         font-family: "Marvel", sans-serif;
         font-weight: 400;
         font-style: normal;
@@ -78,7 +84,8 @@
         width: 80%;
         height: 20px;
     }
-    .search-button{
+
+    .search-button {
         font-family: "Marvel", sans-serif;
         font-weight: 400;
         font-style: normal;
@@ -86,13 +93,66 @@
         width: 15%;
         height: 20px;
     }
-    .filter-select, .sort-select, .search-input{
+
+    .filter-select,
+    .sort-select,
+    .search-input {
         width: 95%;
         height: 20px;
         font-family: "Marvel", sans-serif;
         font-weight: 400;
         font-style: normal;
         font-size: xx-small;
+    }
+
+    main {
+        min-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .results-title {
+        font-family: "Marvel", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: large;
+    }
+
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+    }
+
+    .pagination-button {
+        background-color: #02688E;
+        color: #ffffff;
+        border: none;
+        padding: 5px 10px;
+        margin: 0 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .pagination-button:hover {
+        background-color: #19475C;
+    }
+
+    .pagination-button i {
+        font-size: 12px;
+    }
+
+    .pagination-button i {
+        display: flex;
+        align-items: center;
+    }
+
+    .pagination-button i+span {
+        margin-left: 5px;
     }
 
 }
