@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <header id="main-header" class="main-header">
+        <div id="logo-container" class="logo-container">
+            <figure>
+                <img src="./assets/adacomis-logo.png" alt="logo ada comics" id="logo-img" class="logo-img">
+            </figure>
+        </div>
+        <nav id="search-nav" class="search-nav">
+            <a href="#" id="brand-link" class="brand-link">
+                <img src="./assets/adacomis-logo-blanco.png" alt="" id="brand-img" class="brand-img">
+            </a>
+            <div id="search-bar" class="search-bar">
+                <h3 id="search-label" class="search-label">Búsqueda</h3>
+                <input type="text" placeholder="Ingresa tu búsqueda" id="search-input" class="search-input">
+            </div>
+            <div id="filter-type" class="filter-type">
+                <h3 id="filter-label" class="filter-label">Tipo</h3>
+                <select id="filter-select" class="filter-select">
+                    <option value="#" selected>COMICS</option>
+                    <option value="#">PERSONAJES</option>
+                </select>
+            </div>
+            <div id="sort-order" class="sort-order">
+                <h3 id="sort-label" class="sort-label">Orden</h3>
+                <select id="sort-select" class="sort-select">
+                    <option value="#" selected>A-Z</option>
+                    <option value="#">Z-A</option>
+                    <option value="#">Más nuevos</option>
+                    <option value="#">Más viejos</option>
+                </select>
+            </div>
+            <button id="search-button" class="search-button">BUSCAR</button>
+        </nav>
+    </header>
+
+
 </body>
+
 </html>
