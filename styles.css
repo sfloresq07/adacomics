@@ -155,4 +155,25 @@ body {
         margin-left: 5px;
     }
 
+    footer {
+        background-color: #034D78; 
+        color: #ecf0f1;
+        padding: 15px;
+        text-align: center;
+    }
+    
+    footer p {
+        margin: 0;
+        font-family: "Marvel", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: large;
+    }
+    
+    .fa-copyright {
+        margin-left: 5px;
+        font-size: 14px; 
+    }
+    
+
 }
