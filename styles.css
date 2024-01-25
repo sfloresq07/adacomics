@@ -112,7 +112,7 @@ body {
         justify-content: space-between;
     }
 
-    .results-title {
+    .results-title, .total-results {
         font-family: "Marvel", sans-serif;
         font-weight: 700;
         font-style: normal;
