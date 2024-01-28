@@ -6,6 +6,7 @@ const hash = "&hash=d05cdf669e3cc07e2dbef29e98d4ed2f";
 document.addEventListener("DOMContentLoaded", async () => {
     const filterSelect = document.getElementById("filter-select");
     const searchButton = document.getElementById("search-button");
+    const totalResultsElement = document.getElementById("total-results");
 
     const buildComicCards = (data) => {
         const cardContainer = document.getElementById("results-section");
@@ -47,6 +48,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     };
 
+    const updateTotalResults = (total) => {
+        totalResultsElement.textContent = total;
+    };
+
     const fetchComics = async (title) => {
         try {
             let bringTitle = title ? `&title=${title}` : "";
@@ -54,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const response = await fetch(apiUrl);
             const data = await response.json();
             console.log(data.data.results);
-            return data.data.results;
+            return { results: data.data.results, total: data.data.total };
         } catch (error) {
             console.error("Error al obtener datos de la API:", error);
         }
@@ -67,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const response = await fetch(apiUrl);
             const data = await response.json();
             console.log(data.data.results);
-            return data.data.results;
+            return { results: data.data.results, total: data.data.total };
         } catch (error) {
             console.error("Error al obtener datos de la API:", error);
         }
@@ -78,10 +83,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (selectedValue === "title") {
             const comicsData = await fetchComics();
-            buildComicCards(comicsData);
+            updateTotalResults(comicsData.total);
+            buildComicCards(comicsData.results);
         } else if (selectedValue === "name") {
             const charactersData = await fetchCharacters();
-            buildCharacterCards(charactersData);
+            updateTotalResults(charactersData.total);
+            buildCharacterCards(charactersData.results);
         }
     };
 
