@@ -34,18 +34,18 @@
             <div id="sort-order" class="sort-order">
                 <h3 id="sort-label" class="sort-label">Orden</h3>
                 <select id="sort-select" class="sort-select">
-                    <option value="#" selected>A-Z</option>
-                    <option value="#">Z-A</option>
-                    <option value="#">Más nuevos</option>
-                    <option value="#">Más viejos</option>
+                    <option value="ascendant" selected>A-Z</option>
+                    <option value="falling">Z-A</option>
+                    <option value="newer">Más nuevos</option>
+                    <option value="older">Más viejos</option>
                 </select>
             </div>
-             <button id="search-button" class="search-button">BUSCAR</button>
+            <button id="search-button" class="search-button">BUSCAR</button>
         </nav>
     </header>
     <main>
         <h2 id="results-title" class="results-title">Resultados</h2>
-        <p id="total-results" class="total-results">HOLA SOY EL RESULTADO</p>
+        <p id="total-results" class="total-results"></p>
 
         <section id="results-section">
 
@@ -73,7 +73,9 @@
         </div>
     </main>
     <footer>
-        <div><p>APP|Buscador de Comics SF <i class="fa-regular fa-copyright"></i></p></div>
+        <div>
+            <p>APP|Buscador de Comics SF <i class="fa-regular fa-copyright"></i></p>
+        </div>
     </footer>
 
 
