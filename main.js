@@ -7,6 +7,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     const filterSelect = document.getElementById("filter-select");
     const searchButton = document.getElementById("search-button");
     const totalResultsElement = document.getElementById("total-results");
+    const sortSelect = document.getElementById("sort-select")
+
+    const updateSortOptions = (selectedType, selectedSort) => {
+        const sortOptions = sortSelect.options;
+
+        sortOptions[1].style.display = "block";
+        sortOptions[2].style.display = "block";
+        sortOptions[3].style.display = "block";
+
+        if (selectedType === "name" || selectedType === "characters") {
+            sortOptions[2].style.display = "none";
+            sortOptions[3].style.display = "none";
+        }
+
+        for (let i = 0; i < sortOptions.length; i++) {
+            if (sortOptions[i].value === selectedSort) {
+                sortOptions[i].selected = true;
+                break;
+            }
+        }
+    };
+
 
     const buildComicCards = (data) => {
         const cardContainer = document.getElementById("results-section");
@@ -52,10 +74,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         totalResultsElement.textContent = total;
     };
 
-    const fetchComics = async (title) => {
+    const fetchComics = async (title, sortOrder) => {
         try {
             let bringTitle = title ? `&title=${title}` : "";
-            const apiUrl = `${urlBase}comics?${ts}${publicKey}${hash}${bringTitle}`;
+            const orderOptions = {
+                ascendant: "title",
+                falling: "-title",
+                newer: "-focDate",
+                older: "focDate",
+            };
+            const orderBy = orderOptions[sortOrder] || "title";
+            const apiUrl = `${urlBase}comics?${ts}${publicKey}${hash}${bringTitle}&orderBy=${orderBy}`;
             const response = await fetch(apiUrl);
             const data = await response.json();
             console.log(data.data.results);
@@ -65,10 +94,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     };
 
-    const fetchCharacters = async (name) => {
+    const fetchCharacters = async (name, sortOrder) => {
         try {
             let bringName = name ? `&name=${name}` : "";
-            const apiUrl = `${urlBase}characters?${ts}${publicKey}${hash}${bringName}`;
+            const orderOptions = {
+                ascendant: "name",
+                falling: "-name",
+            };
+            const orderBy = orderOptions[sortOrder] || "name";
+            const apiUrl = `${urlBase}characters?${ts}${publicKey}${hash}${bringName}&orderBy=${orderBy}`;
             const response = await fetch(apiUrl);
             const data = await response.json();
             console.log(data.data.results);
@@ -80,13 +114,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const handleSearch = async () => {
         const selectedValue = filterSelect.value;
+        const selectedSort = sortSelect.value;
+        const searchTerm = document.getElementById("search-input").value;
+        updateSortOptions(selectedValue);
 
         if (selectedValue === "title") {
-            const comicsData = await fetchComics();
+            const comicsData = await fetchComics(searchTerm, selectedSort);
             updateTotalResults(comicsData.total);
             buildComicCards(comicsData.results);
         } else if (selectedValue === "name") {
-            const charactersData = await fetchCharacters();
+            const charactersData = await fetchCharacters(searchTerm, selectedSort);
             updateTotalResults(charactersData.total);
             buildCharacterCards(charactersData.results);
         }
